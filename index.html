@@ -173,6 +173,47 @@
     @media (max-width:480px){
       .hero{-webkit-text-stroke:1.5px}
     }
+
+    /* Portrait / narrow viewport: aspect ratio <= 3:4 */
+    @media (max-aspect-ratio: 3/4) {
+      /* Controls: stack vertically */
+      .controls{
+        grid-template-columns: 1fr;
+        justify-items: stretch;
+      }
+      .controls .grp{
+        align-items: stretch;
+      }
+
+      /* Pattern Slots: show as a grid with 8 tiles per row */
+      .slots{
+        display: grid;
+        grid-template-columns: repeat(8, minmax(32px, 1fr));
+        justify-content: center;
+        gap: 4px;
+        align-items: center;
+      }
+
+      /* Flatten bar/measure wrappers so only tiles participate in the grid */
+      .bar,
+      .measure{
+        display: contents;
+        margin: 0;
+      }
+
+      /* Slightly smaller tiles in vertical mode so everything fits nicely */
+      .bar img,
+      .measure img{
+        width: 40px;
+        height: 40px;
+      }
+
+      /* Extra vertical spacing between 2nd–3rd and 3rd–4th tile rows in portrait */
+      .slots .bar:nth-of-type(2) img{
+        margin-top: 4px;
+        margin-bottom: 4px;
+      }
+    }
   </style>
 </head>
 <body>
